@@ -6,11 +6,15 @@ class Personagem {
         this.#vida = parseInt(vida);
     }
     receberDano(valor) {
-        let a = this.#vida - valor;
-        if (a < 0) {
-            return `Seu personagem morreu`;
+        let value = this.#vida - valor;
+        this.#vida = value
+    }
+    exibirStatus() {
+        if (this.#vida < 0) {
+            return console.log(`Seu personagem morreu`);
         } else {
-            return `Seu personagem recebeu ${valor} de dano,restam ${a} de vida`;
+            let a = this.#vida;
+            return console.log(`O ${this.classe} tem ${a} de vida restante`);
         }
     }
 }
@@ -42,8 +46,12 @@ class personagemMago extends Personagem{
     }
 }
 
-const guerreiro = new personagemGuerreiro('joão',68,6000,150)
+const guerreiro = new personagemGuerreiro('joão',68,6000,600)
 const mago = new personagemMago('pablo', 40, 5000, 500, 232)
 
-console.log(mago.atacar(guerreiro))
-console.log(guerreiro.atacar(mago))
+mago.atacar(guerreiro)
+guerreiro.atacar(mago)
+
+mago.exibirStatus()
+
+guerreiro.exibirStatus()
